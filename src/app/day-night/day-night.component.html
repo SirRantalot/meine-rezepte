@@ -1,0 +1,11 @@
+<!-- day-night.component.html -->
+<div>
+  <ion-item color="{{selectionDayNight}}">
+    <ion-input label="Solid input"></ion-input>
+  </ion-item>
+
+  <ion-radio-group value="dayAndNight" [(ngModel)]="selectionDayNight">
+    <ion-radio value="light"> Day </ion-radio>
+    <ion-radio value="dark"> Night </ion-radio>
+  </ion-radio-group>
+</div>

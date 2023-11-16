@@ -1,0 +1,20 @@
+<!-- ui.component.html -->
+<ion-input [(ngModel)]="text" placeholder="Enter text"></ion-input>
+
+<ion-range min="0" max="10" [(ngModel)]="rangeValue">
+  <ion-label slot="start">0</ion-label>
+  <ion-label slot="end">10</ion-label>
+</ion-range>
+
+<input type="range" min="0" max="10" [(ngModel)]="rangeValue2">
+
+<ion-select [(ngModel)]="color" (ionChange)="presentToast()">
+  <ion-select-option [style.color]="'red'" value="red">Red</ion-select-option>
+  <ion-select-option [style.color]="'green'" value="green">Green</ion-select-option>
+  <ion-select-option [style.color]="'blue'" value="blue">Blue</ion-select-option>
+</ion-select>
+
+<p>{{text}}</p>
+<p>Current range value: {{rangeValue}}</p>
+<p>Current 2nd range value: {{rangeValue2}}</p>
+<p [style.color]="color">{{color}}</p>
