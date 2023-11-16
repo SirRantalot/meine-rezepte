@@ -1,0 +1,7 @@
+{
+  "name": "meine-rezepte",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
