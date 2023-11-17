@@ -18,6 +18,14 @@ export const routes: Routes = [
     loadComponent: () => import('./battery/battery.component').then((m) => m.BatteryComponent),
   },
   {
+    path: 'camera',
+    loadComponent: () => import('./camera/camera.component').then((m) => m.CameraComponent),
+  },
+  {
+    path: 'geolocation',
+    loadComponent: () => import('./geolocator/geolocator.component').then((m) => m.GeolocatorComponent),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
