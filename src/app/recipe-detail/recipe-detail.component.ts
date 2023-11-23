@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Food } from '../data/food';
 import { Category } from '../data/category';
 import { CommonModule } from '@angular/common';
-import { FoodService } from '../services/food.service';
+import { FoodService } from '../services/recipe.service';
 import { IonicModule } from '@ionic/angular';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';

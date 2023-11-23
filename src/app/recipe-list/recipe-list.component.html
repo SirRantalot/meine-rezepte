@@ -3,17 +3,17 @@
 </ion-refresher>
 
 <ion-list>
-  <ion-item-group *ngFor="let category of categories">
-    <ion-item-divider *ngIf="getFoodsOfCategory(category.id).length > 0">
-      <ion-label>{{ category.name }}</ion-label>
+  <ion-item-group *ngFor="let country of countries">
+    <ion-item-divider *ngIf="getRecipesOfCountry(country.country_id).length > 0">
+      <ion-label>{{ country.country_name }}</ion-label>
     </ion-item-divider>
 
     <ion-item-sliding
-        *ngFor="let item of getFoodsOfCategory(category.id)">
+        *ngFor="let item of getRecipesOfCountry(country.country_id)">
       <ion-item
         [button]="true"
         (click)="edit(item)">
-        {{ item.name }}
+        {{ item.recipe }}
       </ion-item>
       <ion-item-options slot="end">
         <ion-item-option color="danger">

@@ -27,17 +27,17 @@ export const routes: Routes = [
           {
             path: 'foods',
             loadComponent: () =>
-              import('../food-list/food-list.component').then((m) => m.FoodListComponent),
+              import('../recipe-list/recipe-list.component').then((m) => m.FoodListComponent),
           },
           {
             path: 'food',
             loadComponent: () =>
-              import('../food-detail/food-detail.component').then((m) => m.FoodDetailComponent),
+              import('../recipe-detail/recipe-detail.component').then((m) => m.FoodDetailComponent),
           },
           {
             path: 'food/:id',
             loadComponent: () =>
-              import('../food-detail/food-detail.component').then((m) => m.FoodDetailComponent),
+              import('../recipe-detail/recipe-detail.component').then((m) => m.FoodDetailComponent),
           },
           {
             path: '',

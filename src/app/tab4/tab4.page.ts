@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { FoodListComponent } from '../food-list/food-list.component';
-import { FoodDetailComponent } from '../food-detail/food-detail.component';
+import { FoodListComponent } from '../recipe-list/recipe-list.component';
+import { FoodDetailComponent } from '../recipe-detail/recipe-detail.component';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
