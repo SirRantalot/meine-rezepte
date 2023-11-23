@@ -2,32 +2,7 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-  },
-  {
-    path: 'day-night',
-    loadComponent: () => import('./day-night/day-night.component').then((m) => m.DayNightComponent),
-  },
-  {
-    path: 'ui',
-    loadComponent: () => import('./ui/ui.component').then((m) => m.UiComponent),
-  },
-  {
-    path: 'battery',
-    loadComponent: () => import('./battery/battery.component').then((m) => m.BatteryComponent),
-  },
-  {
-    path: 'camera',
-    loadComponent: () => import('./camera/camera.component').then((m) => m.CameraComponent),
-  },
-  {
-    path: 'geolocation',
-    loadComponent: () => import('./geolocator/geolocator.component').then((m) => m.GeolocatorComponent),
-  },
-  {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
+    loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
   },
 ];
