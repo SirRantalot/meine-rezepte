@@ -1,27 +1,49 @@
-// battery.component.ts
 import { Component, OnInit } from '@angular/core';
-import { Plugins } from '@capacitor/core';
-import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
-const { Battery, Network } = Plugins;
+import { BatteryInfo, Device } from '@capacitor/device';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-battery',
   templateUrl: './battery.component.html',
   styleUrls: ['./battery.component.scss'],
   standalone: true,
-  imports: [FormsModule, IonicModule],
+  imports: [IonicModule,CommonModule]
 })
-export class BatteryComponent implements OnInit {
-  batteryLevel = 0;
-  networkStatus = '';
+export class BatteryComponent  implements OnInit {
 
-  async ngOnInit() {
-    const batteryInfo = await Battery['getStatus']();
-    this.batteryLevel = batteryInfo.level;
+  alertIsOpen : boolean = false
 
-    const networkInfo = await Network['getStatus']();
-    this.networkStatus = networkInfo.connectionType;
+  battery : BatteryInfo | undefined
+
+  batteryLevel : number | undefined
+  batteryIsCharging : boolean | undefined
+
+  constructor() { }
+
+  ngOnInit() {
+    this.getBatteryInfo()
   }
+
+  getBatteryInfo = async () => {
+      const info = await Device.getBatteryInfo();
+
+      this.batteryLevel = info.batteryLevel
+      this.batteryIsCharging = info.isCharging
+
+      this.checkBatteryLevel()
+
+    };
+
+  checkBatteryLevel () {
+    if ((this.batteryLevel && this.batteryLevel < 0.1) && !this.batteryIsCharging) {
+      this.setAlertOpen(true)
+    }
+  }
+
+  setAlertOpen (open : boolean) {
+    this.alertIsOpen = open
+  }
+
 }
