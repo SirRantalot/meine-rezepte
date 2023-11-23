@@ -1,6 +1,6 @@
 export class Recipe {
     public recipe_id!: number;
-    public recipe: string = '';
+    public recipe_name: string = '';
     public image: string = '';
     public favored: boolean = false;
     public country_id: number = 0;

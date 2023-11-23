@@ -65,7 +65,7 @@ export class RecipeService {
     return data
   }
 
-  async getRecipe (id: string) {
+  async getRecipe (id: number) {
     const { data, error } = await this.supabase
       .from(RECIPES_TABLE)
       .select('*')
@@ -73,7 +73,7 @@ export class RecipeService {
     return data
   }
 
-  async getRecipeType (id: string) {
+  async getRecipeType (id: number) {
     const { data, error } = await this.supabase
       .from(RECIPE_TYPES_TABLE)
       .select('*')
@@ -81,7 +81,7 @@ export class RecipeService {
     return data
   }
 
-  async getRecipesHasRecipeType (id: string) {
+  async getRecipesHasRecipeType (id: number) {
     const { data, error } = await this.supabase
       .from(RECIPES_HAS_RECIPE_TYPES_TABLE)
       .select('*')
@@ -89,7 +89,7 @@ export class RecipeService {
     return data
   }
 
-  async getUser (id: string) {
+  async getUser (id: number) {
     const { data, error } = await this.supabase
       .from(USERS_TABLE)
       .select('*')
@@ -97,7 +97,7 @@ export class RecipeService {
     return data
   }
 
-  async getCountry (id: string) {
+  async getCountry (id: number) {
     const { data, error } = await this.supabase
       .from(COUNTRIES_TABLE)
       .select('*')

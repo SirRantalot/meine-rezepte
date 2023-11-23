@@ -7,8 +7,8 @@
     <ion-card-content>
 
       <form
-        (ngSubmit)="saveFood(foodForm.value)"
-        [formGroup]="foodForm">
+        (ngSubmit)="saveRecipe(recipeForm.value)"
+        [formGroup]="recipeForm">
 
           <ion-input
             label="Name"
@@ -45,13 +45,13 @@
             label="Kategorie"
             labelPlacement="floating"
             helperText="Wählen Sie eine Kategorie"
-            formControlName="category"
+            formControlName="country"
             [required]="true"
           >
               <ion-select-option
-                *ngFor="let category of categories"
-                [value]="category.id">
-                {{ category.name }}
+                *ngFor="let country of countries"
+                [value]="country.country_id">
+                {{ country.country_name }}
               </ion-select-option>
 
           </ion-select>

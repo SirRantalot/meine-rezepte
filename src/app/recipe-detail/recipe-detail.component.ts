@@ -1,33 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { Food } from '../data/food';
-import { Category } from '../data/category';
+import { Recipe } from '../data/recipe';
+import { Country } from '../data/country';
 import { CommonModule } from '@angular/common';
-import { FoodService } from '../services/recipe.service';
+import { RecipeService } from '../services/recipe.service';
 import { IonicModule } from '@ionic/angular';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-food-detail',
-  templateUrl: './food-detail.component.html',
-  styleUrls: ['./food-detail.component.scss'],
+  selector: 'app-recipe-detail',
+  templateUrl: './recipe-detail.component.html',
+  styleUrls: ['./recipe-detail.component.scss'],
   imports: [IonicModule,FormsModule,ReactiveFormsModule,CommonModule],
   standalone: true
 })
-export class FoodDetailComponent  implements OnInit {
+export class RecipeDetailComponent  implements OnInit {
 
-  food : Food = new Food()
-  categories : Array<Category> = []
+  recipe : Recipe = new Recipe()
+  countries : Array<Country> = []
 
-  public foodForm = new FormGroup({
+  public recipeForm = new FormGroup({
     id: new FormControl(0),
-    name: new FormControl('', Validators.required),
-    score: new FormControl(0, Validators.required),
-    category: new FormControl(0, Validators.required)
+    recipe_name: new FormControl('', Validators.required),
+    image: new FormControl(''),
+    favored: new FormControl(false),
+    country_id: new FormControl(0),
+    user_id: new FormControl(0)
   })
 
   constructor(
-      private foodService : FoodService,
+      private recipeService : RecipeService,
       private formBuilder : FormBuilder,
       private router : Router,
       private route : ActivatedRoute) { }
@@ -35,14 +37,21 @@ export class FoodDetailComponent  implements OnInit {
   ngOnInit() {
     if (this.route.snapshot.paramMap.get('id') !== null) {
         const id = Number.parseInt(this.route.snapshot.paramMap.get('id') as string);
-        this.foodService.getFood(id).then(
+        this.recipeService.getRecipe(id).then(
           data => {
-            this.food = data
-            this.foodForm = this.formBuilder.group(this.food)
+            this.recipe = data && data.length > 0 ? data[0] : new Recipe();
+            this.recipeForm = this.formBuilder.group({
+              id: new FormControl(this.recipe.recipe_id),
+              recipe_name: new FormControl(this.recipe.recipe_name),
+              image: new FormControl(this.recipe.image),
+              favored: new FormControl(this.recipe.favored),
+              country_id: new FormControl(this.recipe.country_id),
+              user_id: new FormControl(this.recipe.user_id)
+            });
         })
     }
-    this.foodService.getCategories().then(
-      data => this.categories = data
+    this.recipeService.getCountries().then(
+      data => this.countries = data || []
     )
   }
 
@@ -50,16 +59,16 @@ export class FoodDetailComponent  implements OnInit {
     await this.router.navigate(['tabs','tab4'])
   }
 
-  saveFood (formData : any) {
-    this.food = Object.assign(formData)
+  saveRecipe (formData : any) {
+    this.recipe = Object.assign(formData)
 
-    if (this.food.id) {
-      this.foodService.updateFood(this.food)
+    if (this.recipe.recipe_id) {
+      this.recipeService.updateRecipe(this.recipe)
         .then(payload=>{
           this.back()
         })
       } else {
-        this.foodService.createFood(this.food)
+        this.recipeService.createRecipe(this.recipe)
           .then(payload=>{
             this.back()
           })
